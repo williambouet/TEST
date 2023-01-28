@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Artwork;
+use App\DataFixtures\UserFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -14,7 +15,7 @@ class ArtworkFixtures extends Fixture  implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < ArtistFixtures::NB_ARTIST; $i++) {
+        for ($i = 0; $i < UserFixtures::NB_OF_ARTIST; $i++) {
             for ($j = 0; $j < rand(1, 10); $j++) {
                 $artwork = new Artwork();
                 $artwork->setArtist($this->getReference('Artist_' . $i));
