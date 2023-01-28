@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() ~ ' | Accueil' }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block content %}
+	<section class="position-relative home container-fluid p-0">
+
+		<h1 class="font-title display-2 mt-5 pt-5 text-center">Entrez dans la communauté créative</h1>
+
+		<h2 class="font-subtitle display-5 my-5 text-center">Catégories</h2>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-4">
+					<h3 class="font-subtitle fs-2 mb-0 mt-2 text-center bg-light">Dessin</h3>
+					<div id="carouselExampleFade1" class="carousel slide carousel-fade" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="http://placeimg.com/320/240/any" class="d-block w-100" alt="Une image">
+							</div>
+							<div class="carousel-item">
+								<img src="http://placeimg.com/320/240/nature" class="d-block w-100" alt="une seconde image">
+							</div>
+							<div class="carousel-item">
+								<img src="http://placeimg.com/320/240/arch" class="d-block w-100" alt="une troisième image">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade1" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Avant</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade1" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Après</span>
+						</button>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-4">
+					<h3 class="font-subtitle fs-2 mb-0 mt-2 text-center bg-light">Peinture</h3>
+					<div id="carouselExampleFade2" class="carousel slide carousel-fade" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="http://placeimg.com/320/240/any" class="d-block w-100" alt="Une image">
+							</div>
+							<div class="carousel-item">
+								<img src="http://placeimg.com/320/240/nature" class="d-block w-100" alt="une seconde image">
+							</div>
+							<div class="carousel-item">
+								<img src="http://placeimg.com/320/240/arch" class="d-block w-100" alt="une troisième image">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade2" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Avant</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade2" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Après</span>
+						</button>
+					</div>
+				</div>
+
+				<div class="col-12 col-sm-4">
+					<h3 class="font-subtitle fs-2 mb-0 mt-2 text-center bg-light">Tutoriel</h3>
+					<div id="carouselExampleFade3" class="carousel slide carousel-fade" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="http://placeimg.com/320/240/any" class="d-block w-100" alt="Une image">
+							</div>
+							<div class="carousel-item">
+								<img src="http://placeimg.com/320/240/nature" class="d-block w-100" alt="une seconde image">
+							</div>
+							<div class="carousel-item">
+								<img src="http://placeimg.com/320/240/arch" class="d-block w-100" alt="une troisième image">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade3" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Avant</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade3" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Après</span>
+						</button>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+{% endblock %}
