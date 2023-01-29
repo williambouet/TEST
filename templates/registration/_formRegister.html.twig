@@ -1,0 +1,25 @@
+{{ form_start(registrationForm) }}
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.avatarFile) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.lastname) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.email) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.plainPassword) }}
+		</div>
+		<div id="emailHelp" class="form-text mt-3">Je m'engage à rester courtois dans mes échanges avec la communauté.</div>
+
+		{{ form_row(registrationForm.agreeTerms) }}
+
+		<button type="submit" class="btn btn-primary mt-2">S'inscrire</button>
+
+
+		{{ form_end(registrationForm) }}
