@@ -7,7 +7,8 @@
 		</h2>
 		<div id="panelsStayOpen-collapseOne_{{ artist.user.lastname }}" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne_{{ artist.user.lastname }}">
 			<div
-				class="accordion-body">{# contenu #}
+				class="accordion-body">
+				{{ include('component/_carousel.html.twig') }}
 			</div>
 		</div>
 	</div>

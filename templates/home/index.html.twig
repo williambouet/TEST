@@ -30,14 +30,14 @@
 				{% endfor %}
 			</div>
 
-			<h2 class="font-subtitle display-5 my-5 bg-shadow w-50 rounded-end">Artistes du moment</h2>
+			<h2 class="font-subtitle display-5 my-5 bg-shadow w-50 rounded-end">Découvrez leur travail</h2>
 			<div class="row">
 
 				{% for artist in artists %}
 					<div class="col-12 col-sm-3 my-2">
 						<div class="d-flex flex-column align-items-center border rounded pb-2 h-100 my-2 bg-shadow">
 							<a href="#" class="pt-2">
-								<img class="artistFocus rounded-circle border" src="{{ asset ('build/images/default_avatar.gif') }}" alt="Image de profil" id="avatar">
+								<img class="artistFocus rounded-circle border mb-2" src="{{ asset ('build/images/default_avatar.gif') }}" alt="Image de profil" id="avatar">
 							</a>
 							<div class="w-100">
 							<p class="font-subtitle fs-5 text-center bg-shadow ">{{ artist.user.lastname }}</p>
