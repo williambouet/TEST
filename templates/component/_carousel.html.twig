@@ -1,0 +1,30 @@
+<div id="carouselExampleCaptions_{{ artist.user.lastname }}" class="carousel slide" data-bs-ride="false">
+
+	<div class="carousel-indicators">
+		{% for artwork in artist.artworks|slice(0, 3) %}
+			<button type="button" data-bs-target="#carouselExampleCaptions_{{ artist.user.lastname }}" data-bs-slide-to="{{loop.index0}}" class="{{ loop.first ? 'active' : '' }}" aria-current="true" aria-label="Slide {{loop.index}}"></button>
+		{% endfor %}
+	</div>
+
+	<div class="carousel-inner">
+		{% for artwork in artist.artworks|slice(0, 3) %}
+
+			<div class="carousel-item {{ loop.first ? 'active' : '' }}">
+				<img src="http://placekitten.com/200/300" class="d-block w-100" alt="Une oeuvre de {{ artist.user.lastname }}">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>{{ artwork.name }}</h5>
+					<p>{{ artwork.tool }}</p>
+				</div>
+			</div>
+
+		{% endfor %}
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions_{{ artist.user.lastname }}" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Précédent</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions_{{ artist.user.lastname }}" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Suivant</span>
+	</button>
+</div>

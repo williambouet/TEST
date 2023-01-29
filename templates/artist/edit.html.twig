@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() ~ ' | Profil'}}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+{{ encore_entry_script_tags('previewProfilAvatar') }}
+{% endblock %}
+
+{% block content %}
+	<div class="container mt-5 pt-5">
+	<h1>Mon profil</h1>
+
+		<div class="d-flex flex-column align-items-center mt-5 pt-5">
+			<img class="profilPicture rounded-circle border mt-3" src="{{ app.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(app.user) }}" alt="Image de profil" id="avatar">
+		</div>
+
+{{ include('artist/_form.html.twig') }}
+
+	</div>
+{% endblock %}

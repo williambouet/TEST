@@ -22,22 +22,22 @@
 				{% for category in categories %}
 
 					<div class="col-12 col-sm-3">
-						<h3 class="font-subtitle fs-2 mb-0 mt-2 text-center bg-shadow rounded-top">{{ category.name }}</h3>
-						<a href="#">
+						<h3 class="font-subtitle fs-2 mb-0 mt-2 text-center bg-shadow rounded-top shadow">{{ category.name }}</h3>
+						<a href="#" class="shadow">
 							<img src="{{ asset ('build/images/' ~ category.placeholder) }}" class="d-block w-100 h-75 rounded-bottom" alt="Une image">
 						</a>
 					</div>
 				{% endfor %}
 			</div>
 
-			<h2 class="font-subtitle display-5 my-5 bg-shadow w-50 rounded-end">Artistes du moment</h2>
+			<h2 class="font-subtitle display-5 my-5 bg-shadow w-50 rounded-end">Découvrez leurs œuvres</h2>
 			<div class="row">
 
 				{% for artist in artists %}
 					<div class="col-12 col-sm-3 my-2">
 						<div class="d-flex flex-column align-items-center border rounded pb-2 h-100 my-2 bg-shadow">
-							<a href="#" class="pt-2">
-								<img class="artistFocus rounded-circle border" src="{{ asset ('build/images/default_avatar.gif') }}" alt="Image de profil" id="avatar">
+							<a href="{{ path('app_artist_show_one_artist', { 'id': artist.id }) }}" class="pt-2">
+								<img class="artistFocus rounded-circle border mb-2" src="{{ artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artist.user) }}" alt="Image de profil" id="avatar">
 							</a>
 							<div class="w-100">
 							<p class="font-subtitle fs-5 text-center bg-shadow ">{{ artist.user.lastname }}</p>
