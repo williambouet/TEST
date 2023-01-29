@@ -4,7 +4,36 @@ $font-title: 'Fira Sans', sans-serif;
 $font-subtitle: 'Pontano Sans', sans-serif;
 $font-content: 'Unbounded', cursive;
 
+
 $primary: darken(#428bca, 20%);
+
+$bg-shadow: #ced1d68a;
+
+$profilPictureDiameter: 12rem;
+$artistFocusDiameter:8rem;
+$navbar-height: 5rem;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+
+.profilPicture {
+    height: $profilPictureDiameter;
+    width: $profilPictureDiameter;
+    object-fit: cover;
+}
+
+.artistFocus {
+    height: $artistFocusDiameter;
+    width: $artistFocusDiameter;
+    object-fit: cover;
+}
+
+.bg-shadow {
+    background-color: $bg-shadow;
+}
+
+
+.navbar {
+    height: $navbar-height;
+}
