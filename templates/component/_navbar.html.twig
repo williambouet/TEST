@@ -32,18 +32,8 @@
 							Catégories
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark">
-							<li>
-								<a class="dropdown-item" href="#">Dessin</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">Peinture</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#">Tutoriel</a>
-							</li>
-							<li>
-								<a class="dropdown-item" href="#"></a>
-							</li>
+
+								{{ render(controller('App\\Controller\\CategoryController::categories')) }}
 
 							<li>
 								<hr class="dropdown-divider">

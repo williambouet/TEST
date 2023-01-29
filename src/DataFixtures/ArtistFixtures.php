@@ -17,8 +17,9 @@ class ArtistFixtures extends Fixture  implements DependentFixtureInterface
         for ($i = 0; $i < UserFixtures::NB_OF_ARTIST; $i++) {
             $artist = new Artist();
             $artist->setAboutMe($faker->paragraph(8));
-
+            $artist->setUser($this->getReference('Artist_' . $i));
             $this->setReference('Artist_' . $i, $artist);
+
             $manager->persist($artist);
         }
         $manager->flush();

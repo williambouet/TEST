@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?DateTimeImmutable $updatedAt = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Artist $artist = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -168,6 +171,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(?Artist $artist): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($artist === null && $this->artist !== null) {
+            $this->artist->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($artist !== null && $artist->getUser() !== $this) {
+            $artist->setUser($this);
+        }
+
+        $this->artist = $artist;
 
         return $this;
     }
