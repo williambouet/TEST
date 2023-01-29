@@ -4,15 +4,22 @@ $font-title: 'Fira Sans', sans-serif;
 $font-subtitle: 'Pontano Sans', sans-serif;
 $font-content: 'Unbounded', cursive;
 
+
 $primary: darken(#428bca, 20%);
+
+$profilPictureDiameter: 200px;
+$navbar-height: 5rem;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
-$profilPictureDiameter: 200px;
 
 .profilPicture {
     height: $profilPictureDiameter;
     width: $profilPictureDiameter;
     object-fit: cover;
+}
+
+.navbar {
+    height: $navbar-height;
 }

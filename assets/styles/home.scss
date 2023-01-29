@@ -1,5 +1,7 @@
+@use 'app' as a;
+
 .home {
-    height: calc(100vh);
+    height: calc(100vh - a.$navbar-height);
     background-image: url(../images/home.jpg);
     background-size: cover;
     min-height: 500px;
