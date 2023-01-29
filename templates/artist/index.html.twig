@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() ~ ' | Les artistes' }}
+{% endblock %}
+
+{% block content %}
+
+	<div class="container mt-5">
+		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">Les artistes de la communauté</h2>
+
+		<div class="row">
+
+
+			{% for artist in artists %}
+				<div class="col-12 col-sm-4 my-2">
+					<div class="d-flex flex-column align-items-center border rounded pb-2 h-100 my-2 bg-shadow">
+						<a href="#" class="pt-2">
+							<img class="artistFocus rounded-circle border mb-2" src="{{ app.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(app.user) }}" alt="Image de profil" id="avatar">
+						</a>
+						<div class="w-100">
+							<p class="font-subtitle fs-5 text-center bg-shadow ">{{ artist.user.lastname }}</p>
+
+							{{ include('component/_accordion.html.twig') }}
+
+						</div>
+
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

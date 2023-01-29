@@ -11,6 +11,15 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class ArtworkFixtures extends Fixture  implements DependentFixtureInterface
 {
+    public const TOOLS = [
+        'Crayon de papier',
+        'Feutres à alcool',
+        'Gouache',
+        'Peinture à l\'eau',
+        'Peinture acrylique',
+        'Couteaux',
+        'Pastel',
+    ];
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
@@ -20,7 +29,8 @@ class ArtworkFixtures extends Fixture  implements DependentFixtureInterface
                 $artwork = new Artwork();
                 $artwork->setArtist($this->getReference('Artist_' . $i));
                 $artwork->setName($faker->text($faker->numberBetween(5, 100)));
-                $artwork->setTool($faker->word());
+                $random_keys=array_rand(self::TOOLS);
+                $artwork->setTool(self::TOOLS[$random_keys]);
                 $artwork->setHeight($faker->numberBetween(10, 100));
                 $artwork->setWidth($faker->numberBetween(10, 100));
                 $artwork->setBase($faker->word());
