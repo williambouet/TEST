@@ -1,0 +1,44 @@
+<div class="accordion" id="accordionPanelsStayOpen_{{ artist.user.lastname }}">
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="panelsStayOpen-headingOne_{{ artist.user.lastname }}">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne_{{ artist.user.lastname }}" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne_{{ artist.user.lastname }}">
+				Extrait de ses oeuvres
+			</button>
+		</h2>
+		<div id="panelsStayOpen-collapseOne_{{ artist.user.lastname }}" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne_{{ artist.user.lastname }}">
+			<div
+				class="accordion-body">{# contenu #}
+			</div>
+		</div>
+	</div>
+
+
+	{# 	<div class="accordion-item">
+			<h2 class="accordion-header" id="panelsStayOpen_{{ artist.user.lastname }}">
+				<button
+					class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo_{{ artist.user.lastname }}" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo_{{ artist.user.lastname }}">
+	                titre
+				</button>
+			</h2>
+			<div id="panelsStayOpen-collapseTwo_{{ artist.user.lastname }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen_{{ artist.user.lastname }}">
+				<div
+					class="accordion-body">contenu 
+				</div>
+			</div>
+		</div> #}
+
+
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="panelsStayOpen_{{ artist.user.lastname }}">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree_{{ artist.user.lastname }}" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree_{{ artist.user.lastname }}">
+				À propos de
+				{{artist.user.lastname }}
+			</button>
+		</h2>
+		<div id="panelsStayOpen-collapseThree_{{ artist.user.lastname }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen_{{ artist.user.lastname }}">
+			<div class="accordion-body">
+				{{ artist.aboutMe }}
+			</div>
+		</div>
+	</div>
+</div>
