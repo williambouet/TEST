@@ -32,6 +32,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('avatarFile', VichFileType::class, [
                 'label' => 'Avatar',
+                'attr' => [
+                    'class'=> 'form-control',
+                ],
                 'label_attr' => [
                     'class' => "form-label mt-2",
                 ],

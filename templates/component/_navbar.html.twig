@@ -6,7 +6,15 @@
 		</button>
 		<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
 			<div class="offcanvas-header">
-				<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+				<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+					{% if app.user %}
+					<a href="{{ path('app_artist_edit') }}" class="me-5 text-decoration-none fs-5"><small>Mon profil</small></a>
+					{{ app.user.lastname }} 
+						{% else %}
+							Menu
+					{% endif %}
+
+				</h5>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
 			<div class="offcanvas-body">
@@ -33,7 +41,7 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark">
 
-								{{ render(controller('App\\Controller\\CategoryController::categories')) }}
+							{{ render(controller('App\\Controller\\CategoryController::categories')) }}
 
 							<li>
 								<hr class="dropdown-divider">
