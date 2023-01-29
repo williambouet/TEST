@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() ~ ' | Inscription'}}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('previewAvatarRegistration') }}
+{% endblock %}
+
+{% block content %}
+
+	<div class="container w-25">
+		<div class="d-flex flex-column align-items-center mt-5 pt-5">
+			<h1 class="font-title my-4">Inscription</h1>
+			<img class="profilPicture rounded-circle border mt-3" src="{{ asset ('build/images/default_avatar.gif') }}" alt="Image de profil" id="avatar">
+		</div>
+
+
+		{{ form_start(registrationForm) }}
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.avatarFile) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.lastname) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.email) }}
+		</div>
+
+		<div class="mb-3">
+			{{ form_row(registrationForm.plainPassword) }}
+		</div>
+		<div id="emailHelp" class="form-text mt-3">Je m'engage à rester courtois dans mes échanges avec la communauté.</div>
+
+		{{ form_row(registrationForm.agreeTerms) }}
+
+		<button type="submit" class="btn btn-primary mt-2">S'inscrire</button>
+
+
+		{{ form_end(registrationForm) }}
+	</div>
+</div>{% endblock %}

@@ -8,3 +8,11 @@ $primary: darken(#428bca, 20%);
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+
+$profilPictureDiameter: 200px;
+
+.profilPicture {
+    height: $profilPictureDiameter;
+    width: $profilPictureDiameter;
+    object-fit: cover;
+}
