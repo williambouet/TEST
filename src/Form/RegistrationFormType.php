@@ -41,6 +41,7 @@ class RegistrationFormType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+                'download_label' => true,
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email de connexion',
