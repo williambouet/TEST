@@ -9,6 +9,7 @@ vich_uploader:
             uri_prefix: /uploads/images/avatars
             upload_destination: '%upload_directory_avatar%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        
         artwork_file:
             uri_prefix: /uploads/images/artworks
             upload_destination: '%upload_directory_artwork%'

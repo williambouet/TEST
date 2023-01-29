@@ -2,10 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ArtworkRepository;
+use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ArtworkRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArtworkRepository::class)]
+#[Vich\Uploadable]
 class Artwork
 {
     #[ORM\Id]
@@ -33,6 +39,19 @@ class Artwork
 
     #[ORM\ManyToOne(inversedBy: 'artworks')]
     private ?Artist $artist = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $artwork = null;
+
+    #[Assert\File(
+        maxSize: '2M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+        )]
+    #[Vich\UploadableField(mapping: 'artwork_file', fileNameProperty: 'artwork')]
+    private ?File $artworkFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -119,6 +138,45 @@ class Artwork
     public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+
+     public function getArtwork(): ?string
+    {
+        return $this->artwork;
+    }
+
+    public function setArtwork(?string $artwork): self
+    {
+        $this->artwork = $artwork;
+
+        return $this;
+    }
+
+    public function getArtworkFile(): ?File
+    {
+        return $this->artworkFile;
+    }
+
+    public function setArtworkFile(?File $image = null): self
+    {
+        $this->artworkFile = $image;
+
+        if ($image) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

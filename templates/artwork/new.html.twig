@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() ~ ' | Ajouter une œuvre'}}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mt-5 pt-5">Ajouter une œuvre</h1>
+
+    {{ include('artwork/_form.html.twig') }}
+
+    <a href="{{ path('app_artwork_index') }}">Retour</a>
+</div>
+{% endblock %}

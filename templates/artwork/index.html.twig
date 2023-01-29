@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() ~ '| Mes œuvres'}}
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+
+		<h1 class="mt-5 pt-5">Mes œuvres</h1>
+		<table>
+			<tbody>
+				{% for artwork in app.user.artist.artworks %}
+					<tr>
+					<img src="{{ vich_uploader_asset(artwork) }}" class="img-thumbnail" alt="...">
+				
+						
+						<td>{{ artwork.name }}</td>
+						<td>{{ artwork.tool }}</td>
+						<td>{{ artwork.height }}</td>
+						<td>{{ artwork.width }}</td>
+						<td>{{ artwork.base }}</td>
+						<td>{{ artwork.workDuration }}</td>
+						<td>{{ artwork.artwork }}</td>
+						<td>{{ artwork.updatedAt ? artwork.updatedAt|date('d-m-Y H:i') : '' }}</td>
+						<td>
+							<a href="{{ path('app_artwork_show', {'id': artwork.id}) }}">Voir</a>
+							<a href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="10">Aucune œuvre enegistrées</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a class="btn btn-primary" href="{{ path('app_artwork_new') }}">Ajouter une œuvre</a>
+	</div>
+{% endblock %}

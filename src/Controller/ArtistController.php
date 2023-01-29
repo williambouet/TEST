@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Artist;
 use App\Form\UserType;
-use App\Form\ArtistFormType;
-use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Repository\ArtistRepository;
 use Symfony\Component\HttpFoundation\Request;
