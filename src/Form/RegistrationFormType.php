@@ -39,9 +39,8 @@ class RegistrationFormType extends AbstractType
                     'class' => "form-label mt-2",
                 ],
                 'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
-                'download_uri' => true, // not mandatory, default is true
-                'download_label' => true,
+                'allow_delete'  => false, // not mandatory, default is true
+                'download_uri' => false, // not mandatory, default is true
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email de connexion',

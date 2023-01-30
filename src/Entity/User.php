@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -16,7 +17,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[Vich\Uploadable]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -196,4 +197,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    public function serialize()
+{
+    return serialize(array(
+        $this->id,
+        $this->lastname,
+        $this->password,
+        $this->avatar,
+        $this->roles,
+        $this->email,
+
+
+        // see section on salt below
+        // $this->salt,
+    ));
+}
+
+public function unserialize($serialized)
+{
+    list (
+        $this->id,
+        $this->lastname,
+        $this->password,
+        $this->avatar,
+        $this->roles,
+        $this->email,
+
+
+        // see section on salt below
+        // $this->salt
+    ) = unserialize($serialized);
+}
 }
