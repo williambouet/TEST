@@ -1,8 +1,11 @@
 @use 'app' as a;
 
+$height-home-bg-image:80vh;
+
+
 .home {
-    height: calc(100vh - a.$navbar-height);
-    background-image: url(../images/home.jpg);
-    background-size: cover;
-    min-height: 500px;
-}
+  
+    object-fit:cover;
+    max-height: $height-home-bg-image;
+    width:100vw;
+} 

@@ -30,7 +30,7 @@ class ArtistController extends AbstractController
             
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('artist/edit.html.twig', [
