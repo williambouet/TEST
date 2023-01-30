@@ -33,7 +33,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: /admin, roles: ROLE_ADMIN }
-        - { path: /categories/admin, roles: ROLE_ADMIN }
+        - { path: /categories, roles: ROLE_ADMIN }
+        - { path: /utilisateurs, roles: ROLE_ADMIN }
         - { path: /artiste,  roles: ROLE_ARTIST }
         - { path: /oeuvres,  roles: ROLE_ARTIST }
 
