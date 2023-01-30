@@ -53,6 +53,9 @@ class Artwork
     #[ORM\Column(nullable: true)]
     private ?DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'artworks')]
+    private ?Category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -177,6 +180,18 @@ class Artwork
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

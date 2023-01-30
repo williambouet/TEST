@@ -23,7 +23,7 @@
 
 					<div class="col-12 col-sm-3">
 						<h3 class="font-subtitle fs-2 mb-0 mt-2 text-center bg-shadow rounded-top shadow">{{ category.name }}</h3>
-						<a href="#" class="shadow">
+						<a href="{{ path('app_inspiration_category', { 'id': category.id }) }}" class="shadow">
 							<img src="{{ asset ('build/images/' ~ category.placeholder) }}" class="d-block w-100 h-75 rounded-bottom" alt="Une image">
 						</a>
 					</div>

@@ -20,6 +20,7 @@ class ArtworkFixtures extends Fixture  implements DependentFixtureInterface
         'Couteaux',
         'Pastel',
     ];
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
@@ -31,6 +32,8 @@ class ArtworkFixtures extends Fixture  implements DependentFixtureInterface
                 $artwork->setName($faker->text($faker->numberBetween(5, 100)));
                 $random_keys=array_rand(self::TOOLS);
                 $artwork->setTool(self::TOOLS[$random_keys]);
+                $random_keys=array_rand(CategoryFixtures::CATEGORIES);
+                $artwork->setCategory($this->getReference(CategoryFixtures::CATEGORIES[$random_keys]));
                 $artwork->setHeight($faker->numberBetween(10, 100));
                 $artwork->setWidth($faker->numberBetween(10, 100));
                 $artwork->setBase($faker->word());
@@ -47,6 +50,7 @@ class ArtworkFixtures extends Fixture  implements DependentFixtureInterface
     {
         return [
             ArtistFixtures::class,
+            CategoryFixtures::class,
         ];
     }
 }
