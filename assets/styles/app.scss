@@ -12,10 +12,14 @@ $bg-shadow: #ced1d68a;
 $profilPictureDiameter: 12rem;
 $artistFocusDiameter:8rem;
 $navbar-height: 5rem;
-
+$show-category-height:25rem;
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
+.card-artwork{
+    height:20rem;
+    object-fit: cover;
+}
 
 .profilPicture {
     height: $profilPictureDiameter;
