@@ -14,3 +14,4 @@ vich_uploader:
             uri_prefix: /uploads/images/artworks
             upload_destination: '%upload_directory_artwork%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
