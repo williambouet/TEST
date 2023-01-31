@@ -14,13 +14,13 @@
 			<thead>
 
 				<tr>
-					<th class="w-50">Nom de l'œuvre</th>
-					<th class="w-25">Outil</th>
-					<th class="w-25">Dimension</th>
-					<th class="w-25">Support</th>
-					<th class="w-50">Temps</th>
-					<th class="w-25">Image</th>
-					<th class="w-25"></th>
+					<th class="w-auto">Nom de l'œuvre</th>
+					<th class="w-auto">Outil</th>
+					<th class="w-auto">Dimension</th>
+					<th class="w-auto">Support</th>
+					<th class="w-auto">Temps</th>
+					<th class="w-auto">Image</th>
+					<th class="w-auto"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,12 +32,13 @@
 						<td>{{ artwork.base }}</td>
 						<td>{{ artwork.workDuration % 60 }}h</td>
 						<td>
-							<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="img-thumbnail" alt="...">
+							<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="img-thumbnail w-25" alt="...">
 						</td>
 
-						<td class=" d-flex align-content-center" >
-							<a class="btn btn-sm btn-primary ms-1" href="{{ path('app_artwork_show', {'id': artwork.id}) }}">Voir</a>
+						<td class="">
 							<a class="btn btn-sm btn-outline-primary ms-1" href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">Modifier</a>
+
+							{{ include('artwork/_delete_form.html.twig') }}
 						</td>
 					</tr>
 				{% else %}
