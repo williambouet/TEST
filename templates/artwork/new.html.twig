@@ -4,11 +4,11 @@
 {{ parent() ~ ' | Ajouter une œuvre'}}
 {% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="container">
    <div class="row mt-5 pt-5 justify-content-center">
-   <div class="col-12 col-sm-6">
     <h1 class="">Ajouter une œuvre</h1>
+   <div class="col-12 col-sm-6">
 
     {{ include('artwork/_form.html.twig') }}
 
