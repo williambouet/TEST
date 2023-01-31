@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() ~ ' | Inspiration' }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{# 	{{ encore_entry_link_tags('home') }} #}
+{% endblock %}
+
+{% block content %}
+
+	<div class="container mt-5">
+		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">S'inspirer de {{ artwork.name }}</h2>
+
+		<div class="row">
+
+			<div class="col-12 col-sm-3">
+
+					<div class="card-body">
+
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">{{ artwork.artist.user.lastname}}</li>
+							<li class="list-group-item">{{ artwork.tool}}</li>
+							<li class="list-group-item">{{ artwork.height ~ 'x' ~ artwork.width}}</li>
+							<li class="list-group-item"><small class="text-muted">{{ artwork.workDuration / 60 }}h</small></li>
+						</ul>
+					</div>
+
+			</div>
+
+			<div class="col-12 col-sm-9">
+				<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=Bientôt&font=lobster" : vich_uploader_asset(artwork) }}" 
+				class="rounded w-100" alt="...">
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
