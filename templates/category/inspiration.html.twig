@@ -31,7 +31,7 @@
 								<div class="card-body">
 									<h5 class="card-title">{{ artwork.name }}</h5>
 									<p class="card-text">
-										<small class="text-muted">{{ artwork.workDuration / 60 }}h</small>
+										<small class="text-muted">{{ artwork.workDuration % 60 }}h</small>
 									</p>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item">{{ artwork.artist.user.lastname}}</li>

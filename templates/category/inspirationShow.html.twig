@@ -24,7 +24,7 @@
 							<li class="list-group-item">{{ artwork.artist.user.lastname}}</li>
 							<li class="list-group-item">{{ artwork.tool}}</li>
 							<li class="list-group-item">{{ artwork.height ~ 'x' ~ artwork.width}}</li>
-							<li class="list-group-item"><small class="text-muted">{{ artwork.workDuration / 60 }}h</small></li>
+							<li class="list-group-item"><small class="text-muted">{{ artwork.workDuration % 60 }}h</small></li>
 						</ul>
 					</div>
 
