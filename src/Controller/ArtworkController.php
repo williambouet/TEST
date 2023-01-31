@@ -34,6 +34,8 @@ class ArtworkController extends AbstractController
             $artwork->setArtist($user->getArtist());
             $artworkRepository->save($artwork, true);
 
+            $this->addFlash('success', 'L\'œuvre a bien été ajoutée.');
+
             return $this->redirectToRoute('app_artwork_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -43,13 +45,7 @@ class ArtworkController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Artwork $artwork): Response
-    {
-        return $this->render('artwork/show.html.twig', [
-            'artwork' => $artwork,
-        ]);
-    }
+
 
     #[Route('/{id}/modifier', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Artwork $artwork, ArtworkRepository $artworkRepository): Response
@@ -59,6 +55,8 @@ class ArtworkController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $artworkRepository->save($artwork, true);
+
+            $this->addFlash('success', 'L\'œuvre a bien été modifiée.');
 
             return $this->redirectToRoute('app_artwork_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,6 +72,7 @@ class ArtworkController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $artwork->getId(), $request->request->get('_token'))) {
             $artworkRepository->remove($artwork, true);
+            $this->addFlash('success', 'L\'œuvre a bien été supprimée.');
         }
 
         return $this->redirectToRoute('app_artwork_index', [], Response::HTTP_SEE_OTHER);
