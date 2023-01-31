@@ -1,37 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}
+{{parent() ~ ' | Adminstration'}}
+    
+    {% endblock %}
 
-{% block body %}
-    <h1>Category index</h1>
+{% block content %}
+<div class="container">
 
+<div class="d-flex mt-5 pt-5 justify-content-between">
+    <h1>Categories</h1>
+    <a class="btn btn-sm btn-dark h-100 align-content-center" href="{{ path('app_category_new') }}">Ajouter</a>
+</div>
+<div class="row  justify-content-center">
+    
+<div class="col-12 col-sm-6 ">
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Placeholder</th>
-                <th>actions</th>
+                <th>Titre de la catégorie</th>
+                <th>Image de placeholder</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for category in categories %}
             <tr>
-                <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.placeholder }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+                <td class="d-flex">
+                    <a class="btn btn-sm btn-outline-primary mx-2 align-self-end " href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
+                       {{ include('category/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucunes catégories trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_category_new') }}">Create new</a>
+</div>
+</div>
+</div>
 {% endblock %}
