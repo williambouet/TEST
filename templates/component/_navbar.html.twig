@@ -65,28 +65,20 @@
 						{% endif %}
 					</li>
 
-					<form class="d-flex mt-3" role="search">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-success" type="submit">Rechercher</button>
-					</form>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Catégories
-						</a>
-						<ul class="dropdown-menu dropdown-menu-dark">
-
-							{{ render(controller('App\\Controller\\CategoryController::categories')) }}
-
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('app_artist_all') }}">Artistes</a>
-							</li>
-						</ul>
+					{# 					<form class="d-flex mt-3" role="search">
+											<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+											<button class="btn btn-success" type="submit">Rechercher</button>
+										</form> #}
+					<hr class="dropdown-divider">
+					<p class="dropdown-item text-decoration-none fs-5 pt-5">Catégories</p>
+					<li class="nav-item dropdown">{{ render(controller('App\\Controller\\CategoryController::categories')) }}
 					</li>
-				</ul>
-			</div>
+					<li>
+						<a class="dropdown-item" href="{{ path('app_artist_all') }}">Artistes</a>
+					</li>
+
+				</li>
+			</ul>
 		</div>
 	</div>
-</nav>
+</div></nav>

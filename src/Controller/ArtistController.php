@@ -21,14 +21,12 @@ class ArtistController extends AbstractController
         /** @var User */
         $user = $this->getUser();
 
-
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            
             $userRepository->save($user, true);
+            $this->addFlash('success', 'Votre profil est bien modifié.');
 
             return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
         }
