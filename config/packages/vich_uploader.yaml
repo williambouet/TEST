@@ -15,3 +15,7 @@ vich_uploader:
             upload_destination: '%upload_directory_artwork%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
+        category_file:
+            uri_prefix: /uploads/images/categories
+            upload_destination: '%upload_directory_category%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

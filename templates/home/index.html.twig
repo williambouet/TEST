@@ -26,7 +26,7 @@
 					<div class="col-12 col-sm-6">
 						<h3 class="font-subtitle fs-2 mb-0 mt-2 text-center bg-shadow rounded-top shadow">{{ category.name }}</h3>
 						<a href="{{ path('app_inspiration_category', { 'id': category.id }) }}" class="shadow">
-							<img src="{{ asset ('build/images/' ~ category.placeholder) }}" class="d-block w-100 h-75 rounded-bottom" alt="Une image">
+							<img src="{{ category.placeholder is null ? "https://fakeimg.pl/350x200/?text=Oops&font=lobster" : vich_uploader_asset(category) }}" class="d-block w-100 h-75 rounded-bottom" alt="Une image">
 						</a>
 					</div>
 				{% endfor %}
