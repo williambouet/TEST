@@ -11,8 +11,10 @@
 
 {% block content %}
 
-	<div class="container w-sm-25">
-
+	<div class="container ">
+<div class="row justify-content-center mt-5 pt-5">
+<h1>Connexion</h1>
+<div class="col-12 col-sm-6">
 		{% if error %}
 			<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
@@ -36,6 +38,8 @@
 				</p>
 			</div>
 		</form>
+</div>
+</div>
 
 	</div>
 {% endblock %}
