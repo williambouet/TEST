@@ -6,26 +6,38 @@
 
 {% block content %}
 	<div class="container">
+		<div class="d-flex justify-content-between mt-5 pt-5">
+			<h1 class="">Mes œuvres</h1>
+			<a class="btn btn-dark h-100 align-content-center" href="{{ path('app_artwork_new') }}">Ajouter une œuvre</a>
+		</div>
+		<table class="table">
+			<thead>
 
-		<h1 class="mt-5 pt-5">Mes œuvres</h1>
-		<table>
+				<tr>
+					<th class="w-50">Nom de l'œuvre</th>
+					<th class="w-25">Outil</th>
+					<th class="w-25">Dimension</th>
+					<th class="w-25">Support</th>
+					<th class="w-50">Temps</th>
+					<th class="w-25">Image</th>
+					<th class="w-25"></th>
+				</tr>
+			</thead>
 			<tbody>
 				{% for artwork in app.user.artist.artworks %}
 					<tr>
-					<img src="{{ vich_uploader_asset(artwork) }}" class="img-thumbnail" alt="...">
-				
-						
 						<td>{{ artwork.name }}</td>
 						<td>{{ artwork.tool }}</td>
-						<td>{{ artwork.height }}</td>
-						<td>{{ artwork.width }}</td>
+						<td>{{ artwork.height ~ 'x' ~ artwork.width }}</td>
 						<td>{{ artwork.base }}</td>
-						<td>{{ artwork.workDuration }}</td>
-						<td>{{ artwork.artwork }}</td>
-						<td>{{ artwork.updatedAt ? artwork.updatedAt|date('d-m-Y H:i') : '' }}</td>
+						<td>{{ artwork.workDuration % 60 }}h</td>
 						<td>
-							<a href="{{ path('app_artwork_show', {'id': artwork.id}) }}">Voir</a>
-							<a href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">Modifier</a>
+							<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="img-thumbnail" alt="...">
+						</td>
+
+						<td class=" d-flex align-content-center" >
+							<a class="btn btn-sm btn-primary ms-1" href="{{ path('app_artwork_show', {'id': artwork.id}) }}">Voir</a>
+							<a class="btn btn-sm btn-outline-primary ms-1" href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">Modifier</a>
 						</td>
 					</tr>
 				{% else %}
@@ -36,6 +48,6 @@
 			</tbody>
 		</table>
 
-		<a class="btn btn-primary" href="{{ path('app_artwork_new') }}">Ajouter une œuvre</a>
+
 	</div>
 {% endblock %}
