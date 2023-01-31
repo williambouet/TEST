@@ -20,18 +20,18 @@
 			{% for artwork in artworks %}
 
 				<div class="col-12 col-sm-6">
-					<div class="card mb-3 .card-artwork" >
+					<div class="card mb-3 .card-artwork">
 						<div class="row g-0">
 							<div class="col-md-4">
 								<a href="{{ path('app_inspiration_artwork', { 'id':artwork.id }) }}">
-								<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=Bientôt&font=lobster" : vich_uploader_asset(artwork) }}" class="img-fluid rounded-start card-artwork" alt="...">
+									<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=Bientôt&font=lobster" : vich_uploader_asset(artwork) }}" class="img-fluid rounded-start card-artwork" alt="...">
 								</a>
 							</div>
 							<div class="col-md-8">
 								<div class="card-body">
 									<h5 class="card-title">{{ artwork.name }}</h5>
 									<p class="card-text">
-										<small class="text-muted">{{ artwork.workDuration % 60 }}h</small>
+										<small class="text-muted">{{ (artwork.workDuration / 60)|round(0, 'ceil') }}h</small>
 									</p>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item">{{ artwork.artist.user.lastname}}</li>

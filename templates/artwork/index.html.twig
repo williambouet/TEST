@@ -30,7 +30,7 @@
 						<td>{{ artwork.tool }}</td>
 						<td>{{ artwork.height ~ 'x' ~ artwork.width }}</td>
 						<td>{{ artwork.base }}</td>
-						<td>{{ artwork.workDuration % 60 }}h</td>
+						<td>{{ (artwork.workDuration / 60)|round(0, 'ceil') }}h</td>
 						<td>
 							<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="img-thumbnail w-25" alt="...">
 						</td>
