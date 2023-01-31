@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Artwork;
 use App\Entity\Category;
 use App\Repository\ArtworkRepository;
 use App\Repository\CategoryRepository;
@@ -20,6 +21,15 @@ class InspirationController extends AbstractController
         return $this->render('category/inspiration.html.twig', [
             'artworks' => $artworkRepository->findBy(['category'=> $category->getId()]),
             'category' => $category,
+        ]);
+    }
+
+    #[Route('/categorie/oeuvre/{id}', name: 'artwork', methods:['GET'])]
+    public function show(Artwork $artwork): Response
+    {
+
+        return $this->render('category/inspirationShow.html.twig', [
+            'artwork' => $artwork,
         ]);
     }
 }
