@@ -7,26 +7,34 @@
 {% block content %}
 
 	<div class="container mt-5">
-		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">{{ artist.user.lastname }}</h2>
+		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">Découvrez
+			{{ artist.user.lastname }}</h2>
 
 		<div class="row">
 
-{# on montre un artiste et ses oeuvres #}
-	
-				<div class="col-12 col-sm-4 my-2">
-					<div class="d-flex flex-column align-items-center border rounded pb-2 h-100 my-2 bg-shadow">
-						<a href="#" class="pt-2">
-							<img class="artistFocus rounded-circle border mb-2" src="{{ artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artist.user) }}" alt="Image de profil" id="avatar">
-						</a>
-						<div class="w-100">
-							<p class="font-subtitle fs-5 text-center bg-shadow ">{{ artist.user.lastname }}</p>
 
-							{{ include('component/_accordion.html.twig') }}
+				<div class="col-12 my-2">
+					<div class="d-flex flex-column align-items-center justify-content-between border rounded h-100 bg-shadow">
+							<img class="artistFocus rounded-circle border my-3" src="{{ artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artist.user) }}" alt="Image de profil" id="avatar">
+					
 
-						</div>
+						<p class="font-subtitle fs-5 text-center bg-shadow w-100">{{ artist.user.lastname }}</p>
 
 					</div>
 				</div>
+
+
+				{% for artwork in artist.artworks %}
+					<div class="col-12 my-2 text-center">
+					
+						<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" 
+						class="w-75 p-2 " alt="Une oeuvre de {{ artist.user.lastname }}">
+					</div>
+				{% endfor %}
+
+
+			</div>
+
 		</div>
 	</div>
 {% endblock %}
