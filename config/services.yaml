@@ -6,6 +6,8 @@
 parameters:
     upload_directory_avatar: '%kernel.project_dir%/public/uploads/images/avatars/'
     upload_directory_artwork: '%kernel.project_dir%/public/uploads/images/artworks/'
+    upload_directory_category: '%kernel.project_dir%/public/uploads/images/categories/'
+    
 services:
     # default configuration for services in *this* file
     _defaults:

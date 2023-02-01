@@ -1,13 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Artwork{% endblock %}
+{% block title %}
+	{{ parent() ~ ' | Modification œuvre'}}
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
 
-{% block body %}
-    <h1>Edit Artwork</h1>
+{% block content %}
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+    		<h1 class="my-5 pt-5">Modification d'une œuvre</h1>
+	<div class="col-12 col-sm-6">
 
-    {{ include('artwork/_form.html.twig', {'button_label': 'Update'}) }}
+			{{ include('artwork/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_artwork_index') }}">back to list</a>
-
-    {{ include('artwork/_delete_form.html.twig') }}
+		</div>
+    </div>
+	</div>
 {% endblock %}

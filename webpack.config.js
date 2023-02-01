@@ -27,8 +27,11 @@ Encore
     .addEntry('previewProfilAvatar', './assets/previewProfil.js')
     .addEntry('previewAvatarRegistration', './assets/previewRegistration.js')
     .addEntry('app', './assets/app.js')
-    
+    .addEntry('favorite', './assets/favorite.js')
+    .addEntry('follow', './assets/follow.js')
+
     .addStyleEntry('home', './assets/styles/home.scss')
+    .addStyleEntry('chat', './assets/styles/chat.scss')
     
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

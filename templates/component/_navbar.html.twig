@@ -5,33 +5,57 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+			<div class="d-flex justify-content-end">
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
 			<div class="offcanvas-header">
 				<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
 					{% if app.user %}
 						<div class="fs-2">
 							{{ app.user.lastname }}
 						</div>
-								<a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewbox="0 0 16 16">
-									<path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-									<path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-								</svg>
-								Déconnexion</a>
+						<a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewbox="0 0 16 16">
+								<path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+								<path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+							</svg>
+							Déconnexion</a>
 						<div class="d-flex flex-column">
-							<a href="{{ path('app_artist_edit') }}" class="me-5 text-decoration-none fs-5">
-								<small>Mon profil</small>
-							</a>
-							<a href="{{ path('app_artwork_index') }}" class="me-5 text-decoration-none fs-5">
-								<small>Mes œuvres</small>
-							</a>
+							{% if is_granted('ROLE_ARTIST')%}
+								<a href="{{ path('app_artist_edit') }}" class="me-5 text-decoration-none fs-5">
+									<small>Mon profil</small>
+								</a>
+								<a href="{{ path('app_artwork_index') }}" class="me-5 text-decoration-none fs-5">
+									<small>Mes œuvres</small>
+								</a>
+								<a href="{{ path('app_artwork_favories') }}" class="me-5 text-decoration-none fs-5">
+									<small>Mes favoris</small>
+								</a>
+							{% endif %}
+
+							<a class="nav-link mt-3" href="{{ path('app_index') }}">Accueil</a>
+
+
+							{% if is_granted('ROLE_ADMIN')%}
+
+								<p class="dropdown-item text-decoration-none pt-5">Administrer</p>
+								<a href="{{ path('app_category_index') }}" class="me-5 text-decoration-none fs-5">
+									<small>Catégories</small>
+								</a>
+								<a href="{{ path('app_user_index') }}" class="me-5 text-decoration-none fs-5">
+									<small>Utilisateurs</small>
+								</a>
+
+
+							{% endif %}
 						</div>
+
 
 					{% else %}
 						Menu
 					{% endif %}
 
 				</h5>
-				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
 
 			<div class="offcanvas-body">
@@ -42,31 +66,21 @@
 							<a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
 						{% endif %}
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_index') }}">Accueil</a>
-					</li>
-				<form class="d-flex mt-3" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-success" type="submit">Rechercher</button>
-				</form>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Catégories
-						</a>
-						<ul class="dropdown-menu dropdown-menu-dark">
 
-							{{ render(controller('App\\Controller\\CategoryController::categories')) }}
-
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ path('app_artist_all') }}">Artistes</a>
-							</li>
-						</ul>
+					{# 					<form class="d-flex mt-3" role="search">
+																<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+																<button class="btn btn-success" type="submit">Rechercher</button>
+															</form> #}
+					<hr class="dropdown-divider">
+					<p class="dropdown-item text-decoration-none fs-5 pt-5">Catégories</p>
+					<li class="nav-item dropdown">{{ render(controller('App\\Controller\\CategoryController::categories')) }}
 					</li>
-				</ul>
-			</div>
+					<li>
+						<a class="dropdown-item" href="{{ path('app_artist_all') }}">Artistes</a>
+					</li>
+
+				</li>
+			</ul>
 		</div>
 	</div>
-</nav>
+</div></nav>

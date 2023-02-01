@@ -3,30 +3,51 @@
 {% block title %}
 	{{ parent() ~ ' | ' ~ artist.user.lastname }}
 {% endblock %}
-
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('favorite') }}
+{% endblock %}
 {% block content %}
 
 	<div class="container mt-5">
-		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">{{ artist.user.lastname }}</h2>
+		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">Découvrez
+			{{ artist.user.lastname }}</h2>
 
 		<div class="row">
 
-{# on montre un artiste et ses oeuvres #}
-	
-				<div class="col-12 col-sm-4 my-2">
-					<div class="d-flex flex-column align-items-center border rounded pb-2 h-100 my-2 bg-shadow">
-						<a href="#" class="pt-2">
-							<img class="artistFocus rounded-circle border mb-2" src="{{ artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artist.user) }}" alt="Image de profil" id="avatar">
-						</a>
-						<div class="w-100">
-							<p class="font-subtitle fs-5 text-center bg-shadow ">{{ artist.user.lastname }}</p>
 
-							{{ include('component/_accordion.html.twig') }}
+			<div class="col-12 my-2">
+				<div
+					class="d-flex flex-column align-items-center justify-content-between border rounded h-100 bg-shadow">
+					{# {% if is_granted('ROLE_ARTIST') %}
+																<a class="toggleFollow z-index-3 position-absolute top-0 start-0 ms-3 text-decoration-none text-dark" href="{{ path('app_artist_add_follow', { id: artist.id }) }}">
+																	<i class="bi fs-1 {{ app.user.artist.isFollow(artist) ? 'bi-bookmark-heart-fill' : 'bi-bookmark-heart' }}"></i>
+																</a>
+															{% endif %} #}
+					<img class="artistFocus rounded-circle border my-3" src="{{ artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artist.user) }}" alt="Image de profil" id="avatar">
 
-						</div>
 
-					</div>
+					<p class="font-subtitle fs-5 text-center bg-shadow w-100">{{ artist.user.lastname }}</p>
+
 				</div>
+			</div>
+
+
+			{% for artwork in artist.artworks %}
+				<div class="col-12 my-2 text-center position-relative">
+					{% if is_granted('ROLE_ARTIST') %}
+						<a class="w-25 toggleFavorite position-absolute top-0 start-0 ms-5 mt-2 text-decoration-none text-dark" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
+							<i class="bi fs-1 {{ app.user.artist.isInFavorite(artwork) ? 'bi-palette-fill' : 'bi-palette' }}"></i>
+						</a>
+					{% endif %}
+					<a href="{{ path('app_inspiration_artwork', { 'id':artwork.id }) }}">
+						<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="w-75 p-2 " alt="Une oeuvre de {{ artist.user.lastname }}">
+					</a>
+				</div>
+			{% endfor %}
+
+
 		</div>
+
 	</div>
-{% endblock %}
+</div>{% endblock %}

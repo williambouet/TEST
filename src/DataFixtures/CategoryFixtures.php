@@ -23,7 +23,8 @@ class CategoryFixtures extends Fixture
         foreach (self::CATEGORIES as $key => $categoryName) {
             $category = new Category();
             $category->setName($categoryName);
-            $category->setPlaceholder($categoryName . '.jpg');
+            $this->addReference($categoryName, $category);
+            
             $manager->persist($category);
         }
         $manager->flush();
