@@ -8,6 +8,7 @@
 	{{ parent() }}
 {% endblock %}
 {% block javascripts %}
+	{{ parent() }}
 	{{ encore_entry_script_tags('favorite') }}
 {% endblock %}
 
@@ -15,7 +16,8 @@
 
 	<div class="container mt-5">
 		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">
-		S'inspirer de {{ artwork.name }}
+			S'inspirer de
+			{{ artwork.name }}
 		</h2>
 
 		<div class="row">
@@ -37,11 +39,11 @@
 			</div>
 
 			<div class="col-12 col-sm-9 position-relative">
-			{% if is_granted('ROLE_ARTIST') %}
-				<a class="toggleFavorite position-absolute top-0 start-0 ms-3 text-decoration-none text-dark" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
-					<i class="bi fs-1 {{ app.user.artist.isInFavorite(artwork) ? 'bi-palette-fill' : 'bi-palette' }}"></i>
-				</a>
-			{% endif %}
+				{% if is_granted('ROLE_ARTIST') %}
+					<a class="toggleFavorite position-absolute top-0 start-0 ms-3 text-decoration-none text-dark" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
+						<i class="bi fs-1 {{ app.user.artist.isInFavorite(artwork) ? 'bi-palette-fill' : 'bi-palette' }}"></i>
+					</a>
+				{% endif %}
 
 				<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=Bientôt&font=lobster" : vich_uploader_asset(artwork) }}" class="rounded w-100" alt="...">
 			</div>
