@@ -28,6 +28,9 @@
 								<a href="{{ path('app_artwork_index') }}" class="me-5 text-decoration-none fs-5">
 									<small>Mes œuvres</small>
 								</a>
+								<a href="{{ path('app_artwork_favories') }}" class="me-5 text-decoration-none fs-5">
+									<small>Mes favoris</small>
+								</a>
 							{% endif %}
 
 							<a class="nav-link mt-3" href="{{ path('app_index') }}">Accueil</a>
@@ -48,7 +51,6 @@
 						</div>
 
 
-
 					{% else %}
 						Menu
 					{% endif %}
@@ -66,9 +68,9 @@
 					</li>
 
 					{# 					<form class="d-flex mt-3" role="search">
-											<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-											<button class="btn btn-success" type="submit">Rechercher</button>
-										</form> #}
+																<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+																<button class="btn btn-success" type="submit">Rechercher</button>
+															</form> #}
 					<hr class="dropdown-divider">
 					<p class="dropdown-item text-decoration-none fs-5 pt-5">Catégories</p>
 					<li class="nav-item dropdown">{{ render(controller('App\\Controller\\CategoryController::categories')) }}
