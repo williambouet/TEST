@@ -23,7 +23,7 @@ class ArtistController extends AbstractController
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
             $this->addFlash('success', 'Votre profil est bien modifié.');
@@ -39,18 +39,40 @@ class ArtistController extends AbstractController
     #[Route('/focus-sur-un-artiste/{id}', name: 'show_one_artist', methods: ['GET'])]
     public function showOneArtist(Artist $artist,): Response
     {
-        
+
         return $this->render('artist/showOneArtist.html.twig', [
             'artist' => $artist,
         ]);
     }
-    
+
     #[Route('/tous-les-artistes', name: 'all')]
     public function index(ArtistRepository $artistRepository): Response
     {
-    
+
         return $this->render('artist/index.html.twig', [
             'artists' => $artistRepository->findBy([], ['id' => 'ASC'])
         ]);
     }
+    #[Route('/suivre/{id}', methods: ['GET', 'POST'], name: 'add_follow')]
+    public function addToFollow(Artist $artist, ArtistRepository $artistRepository): Response
+    {
+        if (!$artist) {
+            $this->addFlash("danger", "Aucun artiste correspondant.");
+        }
+
+        /** @var \App\Entity\User */
+        $user = $this->getUser();
+        $artist = $user->getArtist();
+
+        if ($artist->isFollow($artist)) {
+            $artist->removeFollow($artist);
+        } else {
+            $artist->addFollow($artist);
+        }
+
+        $artistRepository->save($artist, true);
+
+        return $this->json(['isFollow' => $artist->getFavory()->contains($artist)]);
+    }
+
 }

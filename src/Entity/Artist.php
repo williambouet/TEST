@@ -28,10 +28,18 @@ class Artist
     #[ORM\ManyToMany(targetEntity: Artwork::class, inversedBy: 'artists')]
     private Collection $favory;
 
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'follower')]
+    private Collection $follow;
+
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'follow')]
+    private Collection $follower;
+
     public function __construct()
     {
         $this->artworks = new ArrayCollection();
         $this->favory = new ArrayCollection();
+        $this->follow = new ArrayCollection();
+        $this->follower = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,5 +129,67 @@ class Artist
     {
         return $this->favory->contains($artwork);
     }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollow(): Collection
+    {
+        return $this->follow;
+    }
+
+    public function addFollow(self $follow): self
+    {
+        if (!$this->follow->contains($follow)) {
+            $this->follow->add($follow);
+        }
+
+        return $this;
+    }
+
+    public function removeFollow(self $follow): self
+    {
+        $this->follow->removeElement($follow);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getFollower(): Collection
+    {
+        return $this->follower;
+    }
+
+    public function addFollower(self $follower): self
+    {
+        if (!$this->follower->contains($follower)) {
+            $this->follower->add($follower);
+            $follower->addFollow($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(self $follower): self
+    {
+        if ($this->follower->removeElement($follower)) {
+            $follower->removeFollow($this);
+        }
+
+        return $this;
+    }
+
+    public function isFollow(Artist $artist): bool
+    {
+        return $this->follow->contains($artist);
+    }
+
+    public function isFollower(Artist $artist): bool
+    {
+        return $this->follower->contains($artist);
+    }
+
 
 }

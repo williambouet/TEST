@@ -11,6 +11,7 @@
 
 {% block javascripts %}
 	{{ encore_entry_script_tags('favorite') }}
+{# 	{{ encore_entry_script_tags('follow') }} #}
 {% endblock %}
 
 {% block content %}
@@ -42,6 +43,11 @@
 				{% for artist in artists %}
 					<div class="col-12 col-sm-3 my-2">
 						<div class="d-flex flex-column align-items-center justify-content-between border rounded h-100 bg-shadow">
+{# 							{% if is_granted('ROLE_ARTIST') %}
+								<a class="toggleFollow z-index-3 position-absolute top-0 start-0 ms-3 text-decoration-none text-dark" href="{{ path('app_artist_add_follow', { id: artist.id }) }}">
+									<i class="bi fs-1 {{ app.user.artist.isFollow(artist) ? 'bi-bookmark-heart-fill' : 'bi-bookmark-heart' }}"></i>
+								</a>
+							{% endif %} #}
 							<a href="{{ path('app_artist_show_one_artist', { 'id': artist.id }) }}" class="pt-4">
 								<img class="artistFocus rounded-circle border mb-2" src="{{ artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artist.user) }}" alt="Image de profil" id="avatar">
 							</a>
