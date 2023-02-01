@@ -1,41 +1,41 @@
 
-const allFavButton = document.querySelectorAll(".toggleFollow")
-let favoriteIsPending = false;
+const allFollowButton = document.querySelectorAll(".toggleFollow")
+let followIsPending = false;
 
 
-allFavButton.forEach(favButton => {
+allFollowButton.forEach(followButton => {
 
-    favButton.addEventListener('click', e => {
+    followButton.addEventListener('click', e => {
         e.preventDefault();
 
 
-        favoriteIsPending = true;
+        followIsPending = true;
 
-        let favoriteLink = event.currentTarget;
-        let link = favoriteLink.href;
+        let followLink = event.currentTarget;
+        let linkFollow = followLink.href;
 
-        if (!favoriteIsPending) {
-            window.URL.href(link);
+        if (!followIsPending) {
+            window.URL.href(linkFollow);
         }
 
-        fetch(link, { method: "POST" })
+        fetch(linkFollow, { method: "POST" })
             .then(res => res.json())
             .then(function (res) {
-                let favoriteIcon = favoriteLink.firstElementChild;
-                if (res.isInFavorite) {
-                    favoriteIcon.classList.remove('bi-bookmark-heart');
-                    favoriteIcon.classList.add('bi-bookmark-heart-fill');
-                    favoriteIsPending = false;
+                let followIcon = followLink.firstElementChild;
+                if (res.isFollow) {
+                    followIcon.classList.remove('bi-bookmark-heart');
+                    followIcon.classList.add('bi-bookmark-heart-fill');
+                    followIsPending = false;
 
                 } else {
-                    favoriteIcon.classList.remove('bi-bookmark-heart-fill');
-                    favoriteIcon.classList.add('bi-bookmark-heart');
-                    favoriteIsPending = false;
+                    followIcon.classList.remove('bi-bookmark-heart-fill');
+                    followIcon.classList.add('bi-bookmark-heart');
+                    followIsPending = false;
                 }
 
             })
             .catch(function (error) {
-                favoriteIsPending = false;
+                followIsPending = false;
             })
     })
 
