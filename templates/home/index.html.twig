@@ -9,6 +9,10 @@
 	{{ encore_entry_link_tags('home') }}
 {% endblock %}
 
+{% block javascripts %}
+	{{ encore_entry_script_tags('favorite') }}
+{% endblock %}
+
 {% block content %}
 	<img class="home lg-position-absolute" src="{{ asset ('build/images/home.jpg') }}" alt="" srcset="">
 
@@ -49,7 +53,12 @@
 
 					{% for artwork in artist.artworks|slice(0, 3) %}
 						<div class="col-12 col-sm-3 my-2 position-relative">
-							<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="d-none d-sm-block position-absolute top-50 start-50 translate-middle px-2 h-75" alt="Une oeuvre de {{ artist.user.lastname }}">
+							<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="d-none d-sm-block z-index-1 position-absolute top-50 start-50 translate-middle px-2 h-75" alt="Une oeuvre de {{ artist.user.lastname }}">
+							{% if is_granted('ROLE_ARTIST') %}
+								<a class="toggleFavorite z-index-3 position-absolute top-0 start-0 ms-3 text-decoration-none text-dark" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
+									<i class="bi fs-1 {{ app.user.artist.isInFavorite(artwork) ? 'bi-palette-fill' : 'bi-palette' }}"></i>
+								</a>
+							{% endif %}
 						</div>
 					{% endfor %}
 

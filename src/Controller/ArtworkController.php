@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Artwork;
 use App\Form\ArtworkType;
+use App\Repository\ArtistRepository;
 use App\Repository\ArtworkRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,4 +78,26 @@ class ArtworkController extends AbstractController
 
         return $this->redirectToRoute('app_artwork_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/ajouter-aux-favories/{id}', methods: ['GET', 'POST'], name: 'add_favory')]
+public function addToFavories(Artwork $artwork, ArtistRepository $artistRepository): Response
+{
+    if (!$artwork) {
+            $this->addFlash("danger", "Aucune œuvre correspondante trouvée.");
+    }      
+
+    /** @var \App\Entity\User */
+    $user = $this->getUser();
+    $artist = $user->getArtist();
+
+    if ($artist->isInFavorite($artwork)) {
+        $artist->removeFavory($artwork);
+    } else {
+        $artist->addFavory($artwork);
+    }        
+
+    $artistRepository->save($artist, true);        
+
+    return $this->json(['isInFavorite' => $artist->getFavory()->contains($artwork)]);
+}
 }

@@ -25,9 +25,13 @@ class Artist
     #[ORM\OneToOne(inversedBy: 'artist', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\ManyToMany(targetEntity: Artwork::class, inversedBy: 'artists')]
+    private Collection $favory;
+
     public function __construct()
     {
         $this->artworks = new ArrayCollection();
+        $this->favory = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,4 +92,34 @@ class Artist
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Artwork>
+     */
+    public function getFavory(): Collection
+    {
+        return $this->favory;
+    }
+
+    public function addFavory(Artwork $artwork): self
+    {
+        if (!$this->favory->contains($artwork)) {
+            $this->favory->add($artwork);
+        }
+
+        return $this;
+    }
+
+    public function removeFavory(Artwork $artwork): self
+    {
+        $this->favory->removeElement($artwork);
+
+        return $this;
+    }
+
+    public function isInFavorite(Artwork $artwork): bool
+    {
+        return $this->favory->contains($artwork);
+    }
+
 }
