@@ -1,0 +1,75 @@
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-lg-12">
+			<div class="card chat-app">
+
+				<div id="plist" class="people-list">
+					<ul class="list-unstyled chat-list mt-2 mb-0">
+						{% for tchatter in tchatters %}
+
+							<li class="clearfix">
+								<a href="{{ path('app_artist_show_one_artist', { 'id': tchatter.user.id }) }}">
+									<img class="avatar rounded-circle border mb-2" src="{{ tchatter.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(tchatter.user) }}" alt="avatar">
+									<div class="about">
+										<div class="name">{{ tchatter.user.lastname }}</div>
+																		</div>
+								</a>
+							</li>
+						{% endfor %}
+
+					</ul>
+				</div>
+
+
+
+				<div class="chat">
+					<div class="chat-header ">
+						<div class="row clearfix ">
+
+							<div class="col-12  ">
+								<a href="{{ path('app_artist_show_one_artist', { 'id': artwork.artist.user.id }) }}">
+									<img class="avatar  border" src="{{ artwork.artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artwork.artist.user) }}" alt="avatar">
+								</a>
+								<div class="chat-about">
+									<h6 class="m-b-0">{{ artwork.artist.user.lastname }}</h6>
+									<small class="about-me">{{ artwork.artist.aboutMe }}</small>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="chat-history ">
+						<ul class="m-b-0">
+
+							{% for comment in comments %}
+								<div class="row {{ comment.author == artwork.artist ? '' : 'justify-content-end' }}">
+
+									<div class="d-flex flex-column col-12 col-lg-6 ">
+										<h6 class="m-b-0">{{ comment.author.user.lastname }}</h6>
+										<div class="message-data d-flex align-items-center ">
+											<img class="avatar  border" src="{{ comment.author.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(comment.author.user) }}" alt="avatar">
+											<span class="message-data-time">{{ comment.creationDate|format_datetime(locale='fr') }}</span>
+										</div>
+										<p class="message other-message ">
+											{{ comment.comment|nl2br }}
+										</p>
+									</div>
+
+								</div>
+							{% endfor %}
+						</ul>
+					</div>
+
+
+				</div>
+					<div class="chat-message clearfix">
+						<div class="input-group mb-0 d-flex" id="anchor">
+
+							{% include "comment/_form.html.twig" %}
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>

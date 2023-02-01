@@ -31,6 +31,7 @@ Encore
     .addEntry('follow', './assets/follow.js')
 
     .addStyleEntry('home', './assets/styles/home.scss')
+    .addStyleEntry('chat', './assets/styles/chat.scss')
     
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
