@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArtworkRepository;
@@ -55,6 +57,14 @@ class Artwork
 
     #[ORM\ManyToOne(inversedBy: 'artworks')]
     private ?Category $category = null;
+ 
+    #[ORM\ManyToMany(targetEntity: Artist::class, mappedBy: 'favory')]
+    private Collection $artists;
+
+    public function __construct()
+    {
+        $this->artists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -192,6 +202,33 @@ class Artwork
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Artist>
+     */
+    public function getArtists(): Collection
+    {
+        return $this->artists;
+    }
+
+    public function addArtist(Artist $artist): self
+    {
+        if (!$this->artists->contains($artist)) {
+            $this->artists->add($artist);
+            $artist->addFavory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtist(Artist $artist): self
+    {
+        if ($this->artists->removeElement($artist)) {
+            $artist->removeFavory($this);
+        }
 
         return $this;
     }
