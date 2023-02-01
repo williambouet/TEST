@@ -21,6 +21,12 @@ class ArtworkController extends AbstractController
         return $this->render('artwork/index.html.twig', []);
     }
 
+    #[Route('/favorites', name: 'favories')]
+    public function favories(): Response
+    {
+        return $this->render('artwork/favories.html.twig', []);
+    }
+
     #[Route('/ajouter', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, ArtworkRepository $artworkRepository): Response
     {
