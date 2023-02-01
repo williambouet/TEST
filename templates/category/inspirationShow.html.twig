@@ -4,8 +4,9 @@
 	{{ parent() ~ ' | Inspiration' }}
 {% endblock %}
 
-{% block stylesheets %}
+ {% block stylesheets %}
 	{{ parent() }}
+	{{ encore_entry_link_tags('chat') }}
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
@@ -33,6 +34,8 @@
 						<li class="list-group-item">
 							<small class="text-muted">{{ (artwork.workDuration / 60)|round(0, 'ceil') }}h</small>
 						</li>
+		
+
 					</ul>
 				</div>
 
@@ -49,5 +52,12 @@
 			</div>
 
 		</div>
+		<h2 class="category font-subtitle display-5 bg-shadow rounded-end mt-5">Échanger avec la communauté</h2>
+		<div class="row">
+			<div class="col-12 ">
+				{% include "component/_chat.html.twig" %}
+			</div>
+		</div>
+
 	</div>
 {% endblock %}
