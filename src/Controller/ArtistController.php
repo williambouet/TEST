@@ -54,7 +54,7 @@ class ArtistController extends AbstractController
         ]);
     }
     #[Route('/suivre/{id}', methods: ['GET', 'POST'], name: 'add_follow')]
-    public function addToFollow(Artist $artist, ArtistRepository $artistRepository): Response
+    public function addFollow(Artist $artist, ArtistRepository $artistRepository): Response
     {
         if (!$artist) {
             $this->addFlash("danger", "Aucun artiste correspondant.");
@@ -72,7 +72,8 @@ class ArtistController extends AbstractController
 
         $artistRepository->save($artist, true);
 
-        return $this->json(['isFollow' => $artist->getFavory()->contains($artist)]);
+        return $this->json([
+            'isFollow' => $artist->getFavory()->contains($artist)
+        ]);
     }
-
 }

@@ -161,7 +161,12 @@ class Artist
     {
         return $this->follower;
     }
-
+    
+    public function isFollow(Artist $artist): bool
+    {
+        return $this->follow->contains($artist);
+    }
+    
     public function addFollower(self $follower): self
     {
         if (!$this->follower->contains($follower)) {
@@ -181,10 +186,6 @@ class Artist
         return $this;
     }
 
-    public function isFollow(Artist $artist): bool
-    {
-        return $this->follow->contains($artist);
-    }
 
     public function isFollower(Artist $artist): bool
     {
