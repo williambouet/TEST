@@ -24,7 +24,7 @@
 							<i class="bi bi-house me-3"></i>Accueil</a>
 
 						<div class="d-flex flex-column">
-							{% if is_granted('ROLE_ARTIST') or  is_granted('ROLE_ADMIN') %}
+							{% if is_granted('ROLE_ARTIST') %}
 								<a href="{{ path('app_artist_edit') }}" class="me-5 text-decoration-none fs-5 d-flex align-items-center">
 									<i class="bi bi-person-gear me-3"></i>
 									<small>Mon profil</small>

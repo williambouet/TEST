@@ -15,11 +15,17 @@
 		<div class="mb-3">
 			{{ form_row(registrationForm.plainPassword) }}
 		</div>
+
 		<div id="emailHelp" class="form-text mt-3">Je m'engage à rester courtois dans mes échanges avec la communauté.</div>
 
 		{{ form_row(registrationForm.agreeTerms) }}
+		
+		
+		<div class="d-flex justify-content-between align-items-center">
+		      	<a class="btn btn-outline-primary" href="{{ path('app_comment_index') }}"><i class="me-2 bi bi-arrow-left-square"></i>Retour</a>
+		<button type="submit" class="btn btn-primary mt-2 d-flex align-content-center "><i class="bi bi-pencil-square me-1"></i>S'inscrire</button>
 
-		<button type="submit" class="btn btn-primary mt-2">S'inscrire</button>
-
+		</div>
+</div>
 
 		{{ form_end(registrationForm) }}
