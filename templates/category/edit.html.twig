@@ -14,7 +14,7 @@
 			<div class="col-12 col-sm-6">
 			
 					<div class="d-flex flex-column align-items-center ">
-						<img class="categoryImage rounded border mt-3 w-25" src="{{ app.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(app.user) }}" alt="Image de profil" id="category">
+						<img class="categoryImage rounded border mt-3 w-25" src="{{ category.placeholder is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(category) }}" alt="Image de profil" id="category">
 					</div>
 			
 
