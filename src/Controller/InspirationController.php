@@ -53,7 +53,7 @@ class InspirationController extends AbstractController
             $comment->setArtwork($artwork);
             $commentRepository->save($comment, true);
 
-            //TODO:redirection vers la page en cours, si possible en JSON ou essayer en pointant vers un embedding qui render de twig
+        
             return $this->redirectToRoute('app_inspiration_artwork', ['id' => $artwork->getId(), '_fragment' => 'anchor'], Response::HTTP_SEE_OTHER);
         }
 

@@ -21,7 +21,7 @@
 							<th class="w-50">Titre de la catégorie</th>
 							<th class="w-50">Image de placeholder</th>
 							<th class="mh-100"></th>
-							{# TODO trouver le moyen d'ajuster la hauteur pour ne pas casser les lignes #}
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -31,9 +31,11 @@
 								<td>
 									<img src="{{ category.placeholder is empty ? "https://fakeimg.pl/50x50/?text=À_faire&font=lobster" : vich_uploader_asset(category) }}" class="img-thumbnail w-25" alt="...">
 								</td>
-								<td class="d-flex flex-column justify-content-center align-items-center">
+								<td >
+									<div class="d-flex flex-column justify-content-center align-items-center">
 									<a class="btn btn-sm btn-outline-primary mx-2 align-self-end " href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a>
 									{{ include('category/_delete_form.html.twig') }}
+									</div>
 								</td>
 							</tr>
 						{% else %}

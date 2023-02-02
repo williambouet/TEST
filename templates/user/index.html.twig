@@ -13,8 +13,8 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Email</th>
 					<th>Pseudo</th>
+					<th>Email</th>
 					<th>Avatar</th>
 
 					<th></th>
@@ -24,8 +24,8 @@
 				{% for user in users %}
 					<tr>
 
-						<td>{{ user.email }}</td>
 						<td>{{ user.lastname }}</td>
+						<td>{{ user.email }}</td>
 						<td class="w-25">
 							<img src="{{ user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(user) }}" class="img-thumbnail w-25" alt="...">
 						</td>
