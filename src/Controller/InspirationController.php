@@ -45,8 +45,8 @@ class InspirationController extends AbstractController
         /** @var User */
         $user = $this->getUser();
         $author = $user->getArtist();
-        $date = new DateTimeImmutable('now');
-
+        $date = new DateTimeImmutable();
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setCreationDate($date);
             $comment->setAuthor($author);
