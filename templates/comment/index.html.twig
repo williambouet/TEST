@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="container vh-100">
+	<div class="container ">
 
 		<div class="d-flex mt-5 pt-5 justify-content-between">
 			<h1>Commentaires</h1>
@@ -18,22 +18,22 @@
 				<table class="table">
 					<thead>
 						<tr>
+							<th>Date</th>
 							<th>Oeuvre</th>
 							<th>Commentaire</th>
 							<th>Auteur</th>
-							<th>Date</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for comment in comments %}
 							<tr>
+								<td>{{ comment.creationDate ? comment.creationDate|date('d-m-Y H:i:s') : '' }}</td>
 								<td>{{ comment.artwork.name}}</td>
 								<td>{{ comment.comment }}</td>
 								<td>{{ comment.author.user.lastname }}</td>
-								<td>{{ comment.creationDate ? comment.creationDate|date('d-m-Y H:i:s') : '' }}</td>
 								<td class="d-flex flex-column align-items-center">
-									<a class="btn btn-sm btn-outline-primary m-2" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Modifier</a>
+									<a class="btn btn-sm btn-outline-primary m-2 d-flex" href="{{ path('app_comment_edit', {'id': comment.id}) }}"><i class="bi bi-brush me-1"></i>Modifier</a>
 									{{ include('comment/_delete_form.html.twig') }}
 								</td>
 							</tr>
@@ -45,6 +45,10 @@
 					</tbody>
 				</table>
 
+			</div>
+			<div class="d-flex justify-content-end">
+				<a class="btn btn-outline-primary" href="{{ path('app_index') }}">
+					<i class="me-2 bi bi-arrow-left-square"></i>Retour</a>
 			</div>
 		</div>
 	</div>

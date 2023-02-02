@@ -4,13 +4,13 @@
 			<div class="card chat-app">
 
 				<div id="plist" class="people-list">
-					<ul class="list-unstyled chat-list mt-2 mb-0">
+					<ul class="list-unstyled chat-list mt-2">
 						{% for tchatter in tchatters %}
 
-							<li class="clearfix">
+							<li class="d-flex flex-column align-items-start">
 								<a href="{{ path('app_artist_show_one_artist', { 'id': tchatter.user.id }) }}">
-									<img class="avatar rounded-circle border mb-2" src="{{ tchatter.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(tchatter.user) }}" alt="avatar">
-									<div class="about">
+									<img class="avatarNavbar  border mb-2" src="{{ tchatter.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(tchatter.user) }}" alt="avatar">
+									<div class="about ">
 										<div class="name">{{ tchatter.user.lastname }}</div>
 																		</div>
 								</a>
@@ -26,9 +26,9 @@
 					<div class="chat-header ">
 						<div class="row clearfix ">
 
-							<div class="col-12  ">
+							<div class="d-flex flex-column justify-content-center align-content-center  ">
 								<a href="{{ path('app_artist_show_one_artist', { 'id': artwork.artist.user.id }) }}">
-									<img class="avatar  border" src="{{ artwork.artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artwork.artist.user) }}" alt="avatar">
+									<img class="avatarNavbar  border" src="{{ artwork.artist.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(artwork.artist.user) }}" alt="avatar">
 								</a>
 								<div class="chat-about">
 									<h6 class="m-b-0">{{ artwork.artist.user.lastname }}</h6>
@@ -48,7 +48,7 @@
 									<div class="d-flex flex-column col-12 col-lg-6 ">
 										<h6 class="m-b-0">{{ comment.author.user.lastname }}</h6>
 										<div class="message-data d-flex align-items-center ">
-											<img class="avatar  border" src="{{ comment.author.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(comment.author.user) }}" alt="avatar">
+											<img class="avatarNavbar  border" src="{{ comment.author.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(comment.author.user) }}" alt="avatar">
 											<span class="message-data-time">{{ comment.creationDate|format_datetime(locale='fr') }}</span>
 										</div>
 										<p class="message other-message ">
@@ -64,7 +64,7 @@
 
 				</div>
 					<div class="chat-message clearfix">
-						<div class="input-group mb-0 d-flex" id="anchor">
+						<div class="input-group mb-0 d-flex" >
 
 							{% include "comment/_form.html.twig" %}
 						</div>

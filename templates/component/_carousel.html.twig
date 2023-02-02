@@ -11,10 +11,10 @@
 
 			
 			<div class="carousel-item {{ loop.first ? 'active' : '' }}">
-				<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="d-block w-100" alt="Une oeuvre de {{ artist.user.lastname }}">
+				<img src="{{ artwork.artwork is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200": vich_uploader_asset(artwork) }}" class="d-block w-100" alt="Une oeuvre de {{ artist.user.lastname }}">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>{{ artwork.name }}</h5>
-					<p>{{ artwork.tool }}</p>
+					<h5 class="text-truncate" >{{ artwork.name }}</h5>
+					<p class="text-truncate">{{ artwork.tool }}</p>
 				</div>
 			</div>
 

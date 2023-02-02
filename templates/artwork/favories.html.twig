@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content %}
 
-	<div class="container mt-5">
+	<div class="container mt-5 min-vh-100	">
 		<h2 class="font-subtitle display-5 my-5 pt-5 rounded-end">Inspirations favorites</h2>
 
 		<div class="row">
@@ -26,12 +26,12 @@
 						<div class="row g-0">
 							<div class="col-md-8 position-relative">
 								{% if is_granted('ROLE_ARTIST') %}
-									<a class="toggleFavorite position-absolute top-0 start-0 ms-3 text-decoration-none text-dark" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
+									<a class="toggleFavorite position-absolute top-0 start-0 ms-3 text-decoration-none text-tertiary" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
 										<i class="bi fs-1 {{ app.user.artist.isInFavorite(artwork) ? 'bi-palette-fill' : 'bi-palette' }}"></i>
 									</a>
 								{% endif %}
 								<a href="{{ path('app_inspiration_artwork', { 'id':artwork.id }) }}">
-									<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=Bientôt&font=lobster" : vich_uploader_asset(artwork) }}" class="img-fluid rounded-start card-artwork" alt="...">
+									<img src="{{ artwork.artwork is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(artwork) }}" class="img-fluid rounded-start card-artwork" alt="...">
 								</a>
 							</div>
 							<div class="col-md-4">
@@ -53,7 +53,16 @@
 
 
 				</div>
+			{% else %}
+				<tr>
+					<td colspan="10">Aucunes œuvres en favoris actuellement</td>
+				</tr>
+
 			{% endfor %}
+		</div>
+		<div class="d-flex justify-content-end">
+			<a class="btn btn-outline-primary" href="{{ path('app_index') }}">
+				<i class="me-2 bi bi-arrow-left-square"></i>Retour</a>
 		</div>
 	</div>
 {% endblock %}

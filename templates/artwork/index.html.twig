@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
-	<div class="container">
+	<div class="container min-vh-100">
 		<div class="d-flex justify-content-between mt-5 pt-5">
 			<h1 class="">Mes œuvres</h1>
-			<a class="btn btn-dark h-100 align-content-center" href="{{ path('app_artwork_new') }}">Ajouter une œuvre</a>
+			<a class="btn btn-dark h-100 align-content-center d-flex" href="{{ path('app_artwork_new') }}"><i class="bi bi-plus-square me-1"></i>Ajouter une œuvre</a>
 		</div>
 		<table class="table">
 			<thead>
@@ -32,11 +32,11 @@
 						<td>{{ artwork.base }}</td>
 						<td>{{ (artwork.workDuration / 60)|round(0, 'ceil') }}h</td>
 						<td>
-							<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="img-thumbnail w-25" alt="...">
+							<img src="{{ artwork.artwork is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(artwork) }}" class="img-thumbnail w-25" alt="...">
 						</td>
 
 						<td class="">
-							<a class="btn btn-sm btn-outline-primary ms-1" href="{{ path('app_artwork_edit', {'id': artwork.id}) }}">Modifier</a>
+							<a class="btn btn-sm btn-outline-primary ms-1" href="{{ path('app_artwork_edit', {'id': artwork.id}) }}"><i class="bi bi-brush me-1"></i>Modifier</a>
 
 							{{ include('artwork/_delete_form.html.twig') }}
 						</td>
@@ -48,7 +48,9 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
+		<div class="d-flex justify-content-end">
+		      <a class="btn btn-outline-primary d-flex" href="{{ path('app_index') }}"><i class="me-2 bi bi-arrow-left-square"></i>Retour</a>
+		</div>
 
 	</div>
 {% endblock %}

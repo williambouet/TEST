@@ -22,21 +22,35 @@ class Artwork
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(max: 255)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(max: 255)]
     private ?string $tool = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
+    #[Assert\Regex('/[\d]{1,}\w+/')]
+    #[Assert\Positive]
     private ?int $height = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
+    #[Assert\Regex('/[\d]{1,}\w+/')]
+    #[Assert\Positive]
     private ?int $width = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(max: 255)]
     private ?string $base = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
+    #[Assert\Positive]
     private ?int $work_duration = null;
 
     #[ORM\ManyToOne(inversedBy: 'artworks')]

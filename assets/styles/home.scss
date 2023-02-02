@@ -1,10 +1,17 @@
 @use 'app' as a;
 
 $height-home-bg-image:80vh;
-
+$max-height-image-category:30rem;
+$max-height-image-navbar: 3rem ;
 
 .home {
     object-fit:cover;
     max-height: $height-home-bg-image;
     width:100vw;
 } 
+.categoryHome{
+    max-height: $max-height-image-category;
+    aspect-ratio: 1/1;
+    object-fit:cover;
+}
+

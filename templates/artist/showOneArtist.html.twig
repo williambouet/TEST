@@ -36,18 +36,20 @@
 			{% for artwork in artist.artworks %}
 				<div class="col-12 my-2 text-center position-relative">
 					{% if is_granted('ROLE_ARTIST') %}
-						<a class="w-25 toggleFavorite position-absolute top-0 start-0 ms-5 mt-2 text-decoration-none text-dark" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
+						<a class="w-25 toggleFavorite position-absolute top-0 start-0 ms-5 mt-2 text-decoration-none text-tertiary" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
 							<i class="bi fs-1 {{ app.user.artist.isInFavorite(artwork) ? 'bi-palette-fill' : 'bi-palette' }}"></i>
 						</a>
 					{% endif %}
 					<a href="{{ path('app_inspiration_artwork', { 'id':artwork.id }) }}">
-						<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="w-75 p-2 " alt="Une oeuvre de {{ artist.user.lastname }}">
+						<img src="{{ artwork.artwork is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(artwork) }}" class="w-75 p-2 " alt="Une oeuvre de {{ artist.user.lastname }}">
 					</a>
 				</div>
 			{% endfor %}
 
 
 		</div>
-
+		<div class="d-flex justify-content-end">
+		      <a class="btn btn-outline-primary" href="{{ path('app_index') }}"><i class="me-2 bi bi-arrow-left-square"></i>Retour</a>
+		</div>
 	</div>
 </div>{% endblock %}

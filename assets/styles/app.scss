@@ -6,13 +6,32 @@ $font-content: 'Unbounded', cursive;
 
 
 $primary: darken(#428bca, 20%);
+$secondary:#112a40;
+$tertiary:#baaf91;
+$light:#f3f7fa;
+$dark: #00060a;
+$danger:#fa5b5ba9;
+$success:#8aff86ad;
+
 
 $bg-shadow: #ced1d68a;
 
 $profilPictureDiameter: 12rem;
+$profilPictureNavbar:3rem;
 $artistFocusDiameter:8rem;
 $navbar-height: 5rem;
 $show-category-height:25rem;
+
+$theme-colors: (
+    "primary" : $primary,
+    "secondary" : $secondary,
+    "tertiary" : $tertiary,
+    "light" : $light,
+    "dark" : $dark,
+    "danger" : $danger,
+    "success":  $success,
+  );
+
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
@@ -24,6 +43,12 @@ $show-category-height:25rem;
 .profilPicture {
     height: $profilPictureDiameter;
     width: $profilPictureDiameter;
+    object-fit: cover;
+}
+
+.avatarNavbar {
+    height: $profilPictureNavbar;
+    width: $profilPictureNavbar;
     object-fit: cover;
 }
 
