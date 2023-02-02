@@ -1,4 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-dark mt-4">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_widget(form) }}
+<div class="d-flex justify-content-between ">
+	<div class="d-flex justify-content-end align-items-end">
+		<a class="btn btn-outline-primary " href="{{ path('app_index') }}">
+			<i class="me-2 bi bi-arrow-left-square"></i>Retour</a>
+	</div>
+	<button class="btn btn-dark mt-4 d-flex ">
+		<i class="bi bi-box-arrow-down me-1"></i>
+		{{ button_label|default('Sauvegarder') }}</button>
+</div>
 {{ form_end(form) }}
