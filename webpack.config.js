@@ -26,6 +26,7 @@ Encore
     
     .addEntry('previewProfilAvatar', './assets/previewProfil.js')
     .addEntry('previewAvatarRegistration', './assets/previewRegistration.js')
+    .addEntry('previewCategoryImage', './assets/previewCategory.js')
     .addEntry('app', './assets/app.js')
     .addEntry('favorite', './assets/favorite.js')
     .addEntry('follow', './assets/follow.js')

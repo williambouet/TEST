@@ -35,10 +35,10 @@ security:
         - { path: /admin, roles: ROLE_ADMIN }
         - { path: /categories, roles: ROLE_ADMIN }
         - { path: /utilisateurs, roles: ROLE_ADMIN }
-        - { path: /artiste,  roles: ROLE_ARTIST }
-        - { path: /oeuvres,  roles: ROLE_ARTIST }
-        - { path: /impressions,  roles: ROLE_ARTIST }
-        - { path: /inspirations,  roles: ROLE_ARTIST }
+        - { path: /artiste,  roles: [ROLE_ADMIN, ROLE_ARTIST] }
+        - { path: /oeuvres,  roles: [ROLE_ADMIN, ROLE_ARTIST] }
+        - { path: /impressions,  roles: ROLE_ADMIN }
+        - { path: /inspirations,  roles: [ROLE_ADMIN, ROLE_ARTIST] }
         
 
 
