@@ -3,15 +3,23 @@
 {% block title %}
 	{{ parent() ~ ' | Modification catégorie'}}
 {% endblock %}
-
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('previewCategoryImage') }}
+{% endblock %}
 {% block body %}
-	<div class="container">
+	<div class="container vh-100">
 		<div class="row d-flex justify-content-center">
-				<h1 class="my-5 pt-5">Modification d'une catégorie</h1>
+			<h1 class="my-5 pt-5">Modification d'une catégorie</h1>
 			<div class="col-12 col-sm-6">
+			
+					<div class="d-flex flex-column align-items-center ">
+						<img class="categoryImage rounded border mt-3 w-25" src="{{ app.user.avatar is empty ? asset ( 'build/images/default_avatar.gif') : vich_uploader_asset(app.user) }}" alt="Image de profil" id="category">
+					</div>
+			
 
 				{{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
-                
+
 			</div>
 		</div>
 	</div>

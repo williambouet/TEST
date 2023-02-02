@@ -1,39 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Comment index{% endblock %}
+{% block title %}
+	{{parent() ~ ' | Adminstration'}}
 
-{% block body %}
-    <h1>Comment index</h1>
+{% endblock %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Comment</th>
-                <th>Rating</th>
-                <th>CreationDate</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for comment in comments %}
-            <tr>
-                <td>{{ comment.id }}</td>
-                <td>{{ comment.comment }}</td>
-                <td>{{ comment.rating }}</td>
-                <td>{{ comment.creationDate ? comment.creationDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_comment_show', {'id': comment.id}) }}">show</a>
-                    <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block content %}
+	<div class="container vh-100">
 
-    <a href="{{ path('app_comment_new') }}">Create new</a>
+		<div class="d-flex mt-5 pt-5 justify-content-between">
+			<h1>Commentaires</h1>
+		</div>
+		<div class="row  justify-content-center">
+
+			<div class="col-12 ">
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Oeuvre</th>
+							<th>Commentaire</th>
+							<th>Auteur</th>
+							<th>Date</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for comment in comments %}
+							<tr>
+								<td>{{ comment.artwork.name}}</td>
+								<td>{{ comment.comment }}</td>
+								<td>{{ comment.author.user.lastname }}</td>
+								<td>{{ comment.creationDate ? comment.creationDate|date('d-m-Y H:i:s') : '' }}</td>
+								<td class="d-flex flex-column align-items-center">
+									<a class="btn btn-sm btn-outline-primary m-2" href="{{ path('app_comment_edit', {'id': comment.id}) }}">Modifier</a>
+									{{ include('comment/_delete_form.html.twig') }}
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">Aucun commentaire enregistré.</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
 {% endblock %}

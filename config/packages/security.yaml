@@ -37,7 +37,7 @@ security:
         - { path: /utilisateurs, roles: ROLE_ADMIN }
         - { path: /artiste,  roles: ROLE_ARTIST }
         - { path: /oeuvres,  roles: ROLE_ARTIST }
-        - { path: /impressions,  roles: ROLE_ARTIST }
+        - { path: /impressions,  roles: ROLE_ADMIN }
         - { path: /inspirations,  roles: ROLE_ARTIST }
         
 
