@@ -34,7 +34,7 @@
 					<div class="col-12 col-sm-6">
 						<h3 class="font-subtitle fs-2 mb-0 mt-5 text-center bg-shadow rounded-top shadow">{{ category.name }}</h3>
 						<a href="{{ path('app_inspiration_category', { 'id': category.id }) }}" class="shadow">
-							<img src="{{ category.placeholder is null ? "https://fakeimg.pl/350x200/?text=Oops&font=lobster" : vich_uploader_asset(category) }}" class="d-block w-100 categoryHome rounded-bottom" alt="Une image">
+							<img src="{{ category.placeholder is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(category) }}" class="d-block w-100 categoryHome rounded-bottom" alt="Une image">
 						</a>
 					</div>
 				{% endfor %}
@@ -59,10 +59,10 @@
 					{% for artwork in artist.artworks|slice(0, 3) %}
 						<div class="col-12 col-sm-3 my-2 position-relative">
 							<a href="{{ path('app_inspiration_artwork', { 'id':artwork.id }) }}">
-								<img src="{{ artwork.artwork is null ? "https://fakeimg.pl/350x200/?text=En%20cours&font=lobster": vich_uploader_asset(artwork) }}" class="d-none d-sm-block position-absolute top-50 start-50 translate-middle px-2 h-75" alt="Une oeuvre de {{ artist.user.lastname }}">
+								<img src="{{ artwork.artwork is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/400/300": vich_uploader_asset(artwork) }}" class="d-none d-sm-block position-absolute top-50 start-50 translate-middle px-2 h-75" alt="Une oeuvre de {{ artist.user.lastname }}">
 							</a>
 							{% if is_granted('ROLE_ARTIST') %}
-								<a class="toggleFavorite  position-absolute top-0 start-0 ms-3 text-decoration-none text-dark" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
+								<a class="toggleFavorite  position-absolute top-0 start-0 ms-3 text-decoration-none text-tertiary" href="{{ path('app_artwork_add_favory', { id: artwork.id }) }}">
 									<i class="d-none d-sm-block bi fs-3 {{ app.user.artist.isInFavorite(artwork) ? 'bi-palette-fill' : 'bi-palette' }}"></i>
 								</a>
 							{% endif %}

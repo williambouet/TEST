@@ -29,7 +29,7 @@
 							<tr>
 								<td>{{ category.name }}</td>
 								<td>
-									<img src="{{ category.placeholder is empty ? "https://fakeimg.pl/50x50/?text=À_faire&font=lobster" : vich_uploader_asset(category) }}" class="img-thumbnail w-25" alt="...">
+									<img src="{{ category.placeholder is empty ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(category) }}" class="img-thumbnail w-25" alt="...">
 								</td>
 								<td >
 									<div class="d-flex flex-column justify-content-center align-items-center">

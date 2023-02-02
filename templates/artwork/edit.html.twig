@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="col-sm-3 me-5 align-self-end ">
-					<img class=" border h-100" src="{{ artwork.artwork is empty ? "https://fakeimg.pl/350x200/?text=Bientôt&font=lobster" : vich_uploader_asset(artwork) }}" alt="Une œuvre" id="artworkImage">
+					<img class=" border h-100" src="{{ artwork.artwork is empty ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(artwork) }}" alt="Une œuvre" id="artworkImage">
 				</div>
 			</div>
 
