@@ -37,7 +37,6 @@
 
 
 					</ul>
-					<div id="anchor" class="mt-5"></div>
 				</div>
 
 			</div>
@@ -49,10 +48,11 @@
 					</a>
 				{% endif %}
 
-				<img src="{{ artwork.artwork is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(artwork) }}" class="rounded w-100" alt="...">
+				<img src="{{ artwork.artwork is null ? "https://picsum.photos/id/" ~ random(1, 200) ~ "/300/200" : vich_uploader_asset(artwork) }}" class="rounded w-50" alt="...">
 			</div>
 
 		</div>
+					<div id="anchor" class="mt-5"></div>
 		<h2 class="category font-subtitle display-5 bg-shadow rounded-end mt-5">Échanger avec la communauté</h2>
 		<div class="row">
 			<div class="col-12 ">
